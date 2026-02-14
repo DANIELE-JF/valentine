@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine 💖</title>
+
+  <style>
+    :root{
+      --bg1:#ff2e63;
+      --bg2:#ff7aa2;
+      --dark:#1b1b1f;
+      --glass: rgba(255,255,255,.18);
+      --stroke: rgba(255,255,255,.25);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;}
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      color:white;
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+    }
+
+    /* Background floating hearts */
+    .bg-heart{
+      position:absolute;
+      opacity:.18;
+      font-size:28px;
+      animation: floatUp linear infinite;
+      filter: blur(.2px);
+      pointer-events:none;
+    }
+    @keyframes floatUp{
+      from{transform: translateY(120vh) rotate(0deg); }
+      to{transform: translateY(-20vh) rotate(360deg); }
+    }
+
+    /* Main card */
+    .card{
+      width:min(520px, 92vw);
+      padding:28px 22px;
+      border-radius:24px;
+      background: var(--glass);
+      border:1px solid var(--stroke);
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      backdrop-filter: blur(14px);
+      text-align:center;
+      position:relative;
+      z-index:5;
+    }
+
+    .title{
+      font-size:1.6rem;
+      font-weight:700;
+      letter-spacing:.3px;
+      margin-bottom:10px;
+    }
+
+    .sub{
+      opacity:.9;
+      font-size:1rem;
+      margin-bottom:22px;
+    }
+
+    .btn{
+      border:none;
+      outline:none;
+      cursor:pointer;
+      padding:14px 18px;
+      border-radius:18px;
+      font-weight:700;
+      font-size:1rem;
+      transition:.2s;
+      box-shadow: 0 10px 25px rgba(0,0,0,.18);
+    }
+
+    .btn:active{
+      transform: scale(.98);
+    }
+
+    .btn-primary{
+      background: white;
+      color: #ff2e63;
+    }
+
+    .btn-love{
+      margin-top:14px;
+      background: #1b1b1f;
+      color:white;
+      border:1px solid rgba(255,255,255,.2);
+    }
+
+    .message{
+      margin-top:18px;
+      font-size:1.8rem;
+      font-weight:800;
+      display:none;
+      animation: pop .6s ease;
+      text-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+
+    @keyframes pop{
+      from{transform: scale(.7); opacity:0;}
+      to{transform: scale(1); opacity:1;}
+    }
+
+    .loveArea{
+      margin-top:10px;
+      display:none;
+    }
+
+    .loveText{
+      font-size:2.4rem;
+      font-weight:900;
+      letter-spacing:1px;
+      margin-top:12px;
+      animation: pulse 1s infinite ease-in-out;
+    }
+
+    @keyframes pulse{
+      0%,100%{transform: scale(1);}
+      50%{transform: scale(1.06);}
+    }
+
+    .icons{
+      margin-top:10px;
+      font-size:1.6rem;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      opacity:.95;
+    }
+
+    /* falling hearts */
+    .fall-heart{
+      position:absolute;
+      top:-30px;
+      font-size:22px;
+      animation: fall linear forwards;
+      pointer-events:none;
+      z-index:3;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,.25));
+    }
+
+    @keyframes fall{
+      to{
+        transform: translateY(110vh) rotate(540deg);
+        opacity:0;
+      }
+    }
+
+    /* small footer */
+    .footer{
+      margin-top:18px;
+      font-size:.85rem;
+      opacity:.85;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background hearts -->
+  <script>
+    // generate floating background hearts
+    for(let i=0;i<18;i++){
+      const h = document.createElement("div");
+      h.className = "bg-heart";
+      h.innerText = ["💗","💖","💘","💕","❤️"][Math.floor(Math.random()*5)];
+      h.style.left = Math.random()*100 + "vw";
+      h.style.animationDuration = (8 + Math.random()*10) + "s";
+      h.style.fontSize = (18 + Math.random()*26) + "px";
+      h.style.animationDelay = (-Math.random()*10) + "s";
+      document.body.appendChild(h);
+    }
+  </script>
+
+  <div class="card">
+    <div class="title">Valentine Mode 💝</div>
+    <div class="sub">Pencet tombolnya yaa 😚</div>
+
+    <button id="btnStart" class="btn btn-primary">Tekan ❤️</button>
+
+    <div id="msg" class="message">Happy Valentine’s Day Bbyy 💖</div>
+
+    <div id="loveArea" class="loveArea">
+      <button id="btnLove" class="btn btn-love">Klik ini dong 😳</button>
+
+      <div id="loveText" class="loveText" style="display:none;">
+        I LOVE U 💞
+      </div>
+
+      <div id="icons" class="icons" style="display:none;">
+        ❤️ 💗 💖 💘 💕 😚 ✨ 💝 ❤️‍🔥
+      </div>
+    </div>
+
+    <div class="footer">made with ❤️ for you</div>
+  </div>
+
+  <script>
+    const btnStart = document.getElementById("btnStart");
+    const msg = document.getElementById("msg");
+    const loveArea = document.getElementById("loveArea");
+    const btnLove = document.getElementById("btnLove");
+    const loveText = document.getElementById("loveText");
+    const icons = document.getElementById("icons");
+
+    btnStart.addEventListener("click", () => {
+      msg.style.display = "block";
+      loveArea.style.display = "block";
+      btnStart.style.display = "none";
+      burstHearts(16);
+    });
+
+    btnLove.addEventListener("click", () => {
+      loveText.style.display = "block";
+      icons.style.display = "flex";
+      burstHearts(25);
+      startHeartRain();
+      btnLove.innerText = "Aaaaaa 😭💗";
+      btnLove.disabled = true;
+      btnLove.style.opacity = ".75";
+    });
+
+    function burstHearts(amount){
+      for(let i=0;i<amount;i++){
+        spawnFallingHeart(true);
+      }
+    }
+
+    function startHeartRain(){
+      let count = 0;
+      const rain = setInterval(() => {
+        spawnFallingHeart(false);
+        count++;
+        if(count > 60) clearInterval(rain);
+      }, 120);
+    }
+
+    function spawnFallingHeart(randomBig){
+      const heart = document.createElement("div");
+      heart.className = "fall-heart";
+      heart.innerText = ["❤️","💗","💖","💘","💕","❤️‍🔥"][Math.floor(Math.random()*6)];
+
+      heart.style.left = Math.random()*100 + "vw";
+      heart.style.animationDuration = (2.5 + Math.random()*2.5) + "s";
+      heart.style.fontSize = (randomBig ? (18 + Math.random()*26) : (16 + Math.random()*20)) + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+  </script>
+
+</body>
+</html>
