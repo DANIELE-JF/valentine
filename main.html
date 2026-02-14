@@ -172,6 +172,19 @@
       transform: translateY(0);
     }
 
+    .index-link {
+      color: var(--deep-pink);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .index-link:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
     /* I LOVE U Animation overlay */
     .love-overlay {
       position: fixed;
@@ -318,6 +331,9 @@
       <div class="valentine-card">
         <h1 class="valentine-greeting">Happy Valentine's Day Katy</h1>
         <button class="love-btn" id="loveBtn" type="button">Kirim Cinta 💖</button>
+        <p style="margin-top: 24px;">
+          <a href="index.html" class="index-link">Halaman Utama →</a>
+        </p>
       </div>
     </div>
   </div>
